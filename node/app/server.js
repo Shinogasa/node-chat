@@ -52,3 +52,7 @@ const server = http.createServer((request, response) => {
     serverStatic(response, cache, absPath);
 });
 
+//サーバー待受け
+server.listen(3000, () => {
+    console.log("Server listening on port 3000.");
+});
