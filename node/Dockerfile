@@ -9,3 +9,5 @@ WORKDIR /app
 
 # ポート3000番開放
 EXPOSE 3000
+
+RUN node server.js
