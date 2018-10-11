@@ -42,14 +42,14 @@ const serveStatic = (response, cache, absPath) => {
 
 // HTTPサーバー
 const server = http.createServer((request, response) => {
-    const filePath = false;
+    let filePath = false;
     if (request.url == '/') {
         filePath = 'public/index.html';
     } else {
         filePath = 'public' + request.url;
     }
     const absPath = '/' + filePath;
-    serverStatic(response, cache, absPath);
+    serveStatic(response, cache, absPath);
 });
 
 //サーバー待受け
