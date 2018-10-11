@@ -1,0 +1,10 @@
+version: '3'
+services:
+  server:
+    build: node
+    container_name: node-chat
+    tty: true
+    volumes:
+      - ./node/app:/app
+    ports:
+      - "3000:3000"
