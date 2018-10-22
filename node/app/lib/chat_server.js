@@ -75,3 +75,35 @@ function joinRoom(socket, room) {
         socket.emit('message', {text: usersInRoomSummary});
     }
  }
+
+function handleNameChangeAttempts(socket, nickNames, nameUserd) {
+    soxket.on('nameAttempt', (name) => {
+        if( name.indexOf('Guest') == 0 ) {
+            soxket.emit('nameResult', {
+                success: false,
+                message: 'Names cannot begin with "Guest".'
+            });
+        } else {
+            if ( nameUsed.indexOf(name) == -1) {
+                const previousName = nickNames[socket.id];
+                const previousNameIndex = nameUsed.indexOf(previousName);
+                namesUsed.push(name);
+                nickNames[socket.id] = namel
+                delete namesUsed[previousNameIndex];
+
+                socket.emit('nameResult', {
+                    success: true,
+                    name: name
+                });
+                soxket.brodcast.to(currentRoom[socket.id]).emit('message', {
+                    text: previousName + ' id now known as ' + name + '.'
+                });
+            } else {
+                socket.emit('nameResult', {
+                    success: false,
+                    message: 'That name is already in use.'
+                });
+            }
+        }
+    });
+}
